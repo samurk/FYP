@@ -9,11 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Buyer.PendingOrdersActivity"></activity>
+        <activity android:name=".Buyer.RequestItemsActivity"></activity>
+        <activity android:name=".Buyer.PendingOrdersActivity" />
         <activity android:name=".Admin.RetailerNewOrdersActivity" />
         <activity android:name=".Admin.RetailerMaintainProductsActivity" />
         <activity android:name=".Admin.CheckNewProductsActivity" />
-        <activity android:name=".ui.CheckNewProductsActivity" />
+        <!--<activity android:name=".ui.CheckNewProductsActivity" />-->
         <activity android:name=".Admin.AdminUserProductsActivity" />
         <activity android:name=".Admin.AdminHomeActivity" />
         <activity

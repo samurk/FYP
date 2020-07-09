@@ -39,6 +39,8 @@ public class SellerLoginActivity extends AppCompatActivity {
         emailInput = findViewById(R.id.seller_login_email);
         passwordInput = findViewById(R.id.seller_login_password);
 
+        loadingBar = new ProgressDialog(this);
+
 
         LoginSellerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,12 +59,12 @@ public class SellerLoginActivity extends AppCompatActivity {
 
         if (!email.equals("") &&!password.equals("")) {
 
-            /*loadingBar.setTitle(" Seller Account Login");
+            loadingBar.setTitle(" Seller Account Login");
             loadingBar.setMessage("Please Wait, While We Are Checking Your Credentials.");
             loadingBar.setCanceledOnTouchOutside(false);
-            loadingBar.show();*/
+            loadingBar.show();
 
-            Toast.makeText(this, "Please Wait, While We Are Checking Your Credentials.", Toast.LENGTH_SHORT).show();
+            /*Toast.makeText(this, "Please Wait, While We Are Checking Your Credentials.", Toast.LENGTH_SHORT).show();*/
 
             mAuth.signInWithEmailAndPassword(email,password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
