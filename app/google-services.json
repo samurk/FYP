@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "710094058059",
+    "firebase_url": "https://fabricfox-7ad7a.firebaseio.com",
+    "project_id": "fabricfox-7ad7a",
+    "storage_bucket": "fabricfox-7ad7a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:710094058059:android:20c4bf6056ece1dd0f53ce",
+        "android_client_info": {
+          "package_name": "com.example.fabricfox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "710094058059-d3hgrh4gj4d2t1rgviiq0i546br64p6f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fabricfox",
+            "certificate_hash": "fb05b8de16e0f2df4b873ff09f8eae5c46da8cf9"
+          }
+        },
+        {
+          "client_id": "710094058059-58vpb9na75j4aci96b62i67c11vdmjq9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXcdKf62o_uaV5v-FM-iubbXkMOickP3Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "710094058059-58vpb9na75j4aci96b62i67c11vdmjq9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
