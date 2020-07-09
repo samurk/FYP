@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                LoginBtn.setText("Login Retailer");
+                LoginBtn.setText("Login Admin");
                 AdminLink.setVisibility(View.INVISIBLE);
                 NotAdminLink.setVisibility(View.VISIBLE);
                 parentDbName = "Retailers";

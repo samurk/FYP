@@ -251,9 +251,13 @@ public class HomeActivity extends AppCompatActivity implements OnNavigationItemS
                 startActivity(intent);
             }
         }
-        else if (id == R.id.nav_categories)
+        else if (id == R.id.nav_request)
         {
+            if (!type.equals("Retailers")) {
+                Intent intent = new Intent(HomeActivity.this, RequestItemsActivity.class);
 
+                startActivity(intent);
+            }
         }
         else if (id == R.id.nav_settings)
         {
