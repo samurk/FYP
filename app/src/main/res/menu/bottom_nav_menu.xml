@@ -12,6 +12,11 @@
         android:title="Add" />
 
     <item
+        android:id="@+id/navigation_request"
+        android:icon="@drawable/request"
+        android:title="Request" />
+
+    <item
         android:id="@+id/navigation_logout"
         android:icon="@drawable/logout"
         android:title="Logout" />

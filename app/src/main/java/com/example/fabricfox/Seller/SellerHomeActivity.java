@@ -52,7 +52,10 @@ public class SellerHomeActivity extends AppCompatActivity {
                     Intent intentHome = new Intent(SellerHomeActivity.this, SellerHomeActivity.class);
                     startActivity(intentHome);
                     return true;
-
+                case R.id.navigation_request:
+                    Intent intentRequest = new Intent(SellerHomeActivity.this, SellerRequestOrdersActivity.class);
+                    startActivity(intentRequest);
+                    return true;
                 case R.id.navigation_add:
                     Intent intentCate = new Intent(SellerHomeActivity.this, SellerCategoryActivity.class);
                     startActivity(intentCate);

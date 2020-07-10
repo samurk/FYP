@@ -238,11 +238,11 @@ public class RequestItemsActivity extends AppCompatActivity {
         productMap.put("time",saveCurrentTime);
         productMap.put("description",Description);
         productMap.put("image",downloadImageUrl);
-        productMap.put("rname", PName);
-        productMap.put("rcolor", Color);
-        productMap.put("rextra", Extra);
-        productMap.put("userName", sName);
-        productMap.put("userPhone ",sPhone);
+        productMap.put("pname", PName);
+        productMap.put("pcolor", Color);
+        productMap.put("pextra", Extra);
+        productMap.put("name", sName);
+        productMap.put("phone",sPhone);
         productMap.put("requestState", "Not Available");
 
 
