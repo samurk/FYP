@@ -2,14 +2,14 @@ package com.example.fabricfox.Model;
 
 public class Products
 {
-    private String pname, description, price, image, category, pid, date, time, productState;
+    private String pname, description, price, image, category, pid, date, time, sellerAddress, productState;
 
     public Products()
     {
 
     }
 
-    public Products(String pname, String description, String price, String image, String category, String pid, String date, String time, String productState) {
+    public Products(String pname, String description, String price, String image, String category, String pid, String date, String time, String sellerAddress, String productState) {
         this.pname = pname;
         this.description = description;
         this.price = price;
@@ -18,7 +18,16 @@ public class Products
         this.pid = pid;
         this.date = date;
         this.time = time;
+        this.sellerAddress = sellerAddress;
         this.productState = productState;
+    }
+
+    public String getSellerAddress() {
+        return sellerAddress;
+    }
+
+    public void setSellerAddress(String sellerAddress) {
+        this.sellerAddress = sellerAddress;
     }
 
     public String getPname() {

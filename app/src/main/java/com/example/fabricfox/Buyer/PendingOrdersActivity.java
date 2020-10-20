@@ -28,6 +28,7 @@ public class PendingOrdersActivity extends AppCompatActivity
 {
     private RecyclerView ordersList;
     private DatabaseReference ordersRef;
+    private Button orderRequestBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,9 +37,20 @@ public class PendingOrdersActivity extends AppCompatActivity
         setContentView(R.layout.activity_pending_orders);
 
         ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders");
+        orderRequestBtn = (Button) findViewById(R.id.order_request_item_btn);
 
         ordersList = findViewById(R.id.orders_list);
         ordersList.setLayoutManager(new LinearLayoutManager(this));
+
+        orderRequestBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(PendingOrdersActivity.this, OrderRequestActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

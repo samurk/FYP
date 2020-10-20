@@ -1,4 +1,4 @@
-package com.example.fabricfox.Seller;
+package com.example.fabricfox.Buyer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -15,18 +15,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.fabricfox.Admin.AdminUserProductsActivity;
-import com.example.fabricfox.Admin.RetailerNewOrdersActivity;
-import com.example.fabricfox.Model.RetailerOrders;
 import com.example.fabricfox.Model.SellerRequest;
+import com.example.fabricfox.Prevalent.Prevalent;
 import com.example.fabricfox.R;
+import com.example.fabricfox.Seller.SellerMaintainRequestActivity;
+import com.example.fabricfox.Seller.SellerRequestOrdersActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class SellerRequestOrdersActivity extends AppCompatActivity {
-
+public class OrderRequestActivity extends AppCompatActivity
+{
     private RecyclerView ordersList;
     private DatabaseReference ordersRef;
 
@@ -34,11 +34,11 @@ public class SellerRequestOrdersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_seller_request_orders);
+        setContentView(R.layout.activity_order_request);
 
         ordersRef = FirebaseDatabase.getInstance().getReference().child("Requests");
 
-        ordersList = findViewById(R.id.request_orders_list);
+        ordersList = findViewById(R.id.my_request_orders_list);
         ordersList.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -49,13 +49,13 @@ public class SellerRequestOrdersActivity extends AppCompatActivity {
 
         FirebaseRecyclerOptions<SellerRequest> options =
                 new FirebaseRecyclerOptions.Builder<SellerRequest>()
-                        .setQuery(ordersRef, SellerRequest.class)
+                        .setQuery(ordersRef.orderByChild("phone").equalTo(Prevalent.currentOnlineUser.getPhone()), SellerRequest.class)
                         .build();
 
-        FirebaseRecyclerAdapter<SellerRequest, SellerRequestsViewHolder> adapter =
-                new FirebaseRecyclerAdapter<SellerRequest, SellerRequestsViewHolder>(options) {
+        FirebaseRecyclerAdapter<SellerRequest, SellerRequestOrdersActivity.SellerRequestsViewHolder> adapter =
+                new FirebaseRecyclerAdapter<SellerRequest, SellerRequestOrdersActivity.SellerRequestsViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull SellerRequestsViewHolder holder, final int position, @NonNull final SellerRequest model)
+                    protected void onBindViewHolder(@NonNull SellerRequestOrdersActivity.SellerRequestsViewHolder holder, final int position, @NonNull final SellerRequest model)
                     {
                         holder.userName.setText("Name: " + model.getName());
                         holder.userPhoneNumber.setText("Phone: " + model.getPhone());
@@ -63,16 +63,7 @@ public class SellerRequestOrdersActivity extends AppCompatActivity {
                         holder.userDateTime.setText("Date: " + model.getName() + "  " + model.getTime());
                         holder.productRequestState.setText("Request Status: " + model.getRequestState());
 
-                        holder.ShowOrdersBtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                                Intent intent = new Intent(SellerRequestOrdersActivity.this, SellerMaintainRequestActivity.class);
-                                intent.putExtra("pid", model.getPid());
-                                startActivity(intent);
-
-                            }
-                        });
+                        holder.ShowOrdersBtn.setVisibility(View.INVISIBLE);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -85,8 +76,8 @@ public class SellerRequestOrdersActivity extends AppCompatActivity {
                                                 "No"
                                         };
 
-                                AlertDialog.Builder builder = new AlertDialog.Builder(SellerRequestOrdersActivity.this);
-                                builder.setTitle("Do you have this product?");
+                                AlertDialog.Builder builder = new AlertDialog.Builder(OrderRequestActivity.this);
+                                builder.setTitle("Do you want to delete the request?");
                                 builder.setItems(options, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -115,10 +106,10 @@ public class SellerRequestOrdersActivity extends AppCompatActivity {
 
                     @NonNull
                     @Override
-                    public SellerRequestsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+                    public SellerRequestOrdersActivity.SellerRequestsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
                     {
                         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.request_layout, parent, false);
-                        return new SellerRequestsViewHolder(view);
+                        return new SellerRequestOrdersActivity.SellerRequestsViewHolder(view);
                     }
                 };
 
@@ -126,13 +117,10 @@ public class SellerRequestOrdersActivity extends AppCompatActivity {
         adapter.startListening();
     }
 
-
-
-
     public static class SellerRequestsViewHolder extends RecyclerView.ViewHolder
     {
         public TextView userName, userPhoneNumber, userProductName, userDateTime, productRequestState;
-        public Button ShowOrdersBtn;
+        private Button ShowOrdersBtn;
 
         public SellerRequestsViewHolder(@NonNull View itemView)
         {
@@ -149,6 +137,6 @@ public class SellerRequestOrdersActivity extends AppCompatActivity {
 
     private void RemoverOrder(String uID) {
 
-        ordersRef.child(uID).child("state").setValue("Available");
+        ordersRef.child(uID).removeValue();
     }
 }
